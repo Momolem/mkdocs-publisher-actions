@@ -9,6 +9,8 @@ on:
         default: false
         type: boolean
     secrets:
+        ENCRYPTCONTENT_PASSWORD:
+          required: false
         VERCEL_TOKEN:
           required: false
         VERCEL_PROJECT_ID:
@@ -180,6 +182,8 @@ jobs:
       - name: Mkdocs build
         run: |
           venv/bin/python3 -m mkdocs build
+        env:
+          ENCRYPTCONTENT_PASSWORD: ${{ secrets.ENCRYPTCONTENT_PASSWORD }}
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
